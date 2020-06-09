@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo App</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="todo">
+    <header class="todo__header">
+      <h1 class="todo__heading">ToDo</h1>
+      <input type="text" placeholder="Что тебе надо сделать сделать?" class="todo__input" minlength="2">
+    </header>
+    <main class="todo__main">
+      <input id="choice-all" class="todo__choice-all" type="checkbox">
+			<label for="choice-all">&#8249</label>
+      <ul class="todo__list">
+        <!-- <li class="todo__item">
+          <input  class="todo__item-choice" type="checkbox">
+          <label >&#10003</label>
+          <input type="text" class="todo__item-task" value="убрать квартиру" disabled>
+          <button class="todo__item-delete">	
+            &#10060;</button>
+        </li>
+        <li class="todo__item">
+          <input class="todo__item-choice" type="checkbox">
+          <label >&#10003</label>
+          <input type="text" class="todo__item-task" value="вынести мусор" disabled>
+          <button class="todo__item-delete">	
+            &#10060;</button>
+        </li> -->
+      </ul>
+    </main>
+    <footer class="todo__footer hidden">
+      <span class="todo__counter">Осталось заданий:<b>0</b></span>
+      <!-- <ul class="todo__filtres">
+        <li class="todo__filter"><button class="todo__filter-button filter-all">Все</button></li>
+        <li class="todo__filter"><button class="todo__filter-button filter-active">Активные</button></li>
+        <li class="todo__filter"><button class="todo__filter-button filter-completed">Завершенные</button></li>
+      </ul>   -->
+      <ul class="todo__filtres">
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-all" class="todo__filter-button filter-all" checked>
+          <label for="filter-all">Все</label>
+        </li>
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-active" class="todo__filter-button filter-active">
+          <label for="filter-active">Активные</label>
+        </li>
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-completed" class="todo__filter-button filter-completed">
+          <label for="filter-completed">Завершенные</label>
+        </li>
+      </ul> 
+      <button class="todo__clear-completed">Удалить завершенные</button>
+    </footer>
+  </div>
+  <template>
+    <li class="todo__item">
+      <input  class="todo__item-choice" type="checkbox">
+      <label >&#10003</label>
+      <input type="text" class="todo__item-task" value="" disabled>
+      <button class="todo__item-delete">	
+        &#10060;</button>
+    </li>
+  </template>
+  <script src="/js/task.js"></script>
+</body>
+</html>
