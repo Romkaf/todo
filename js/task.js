@@ -3,7 +3,11 @@
 const mainInput = document.querySelector('.todo__input');
 const todoList = document.querySelector('.todo__list');
 const todoCounter = document.querySelector('.todo__counter b');
-const filters = document.querySelectorAll('.todo__filter-button')
+const filterAll = document.querySelector('.filter-all');
+const filterActive = document.querySelector('.filter-active');
+const filterCompleted = document.querySelector('.filter-completed');
+const footer = document.querySelector('.todo__footer');
+
 
 // Создаём задания после ввода в mainInput
 const createTodoItem = () => {
@@ -39,30 +43,42 @@ const count = (number) => {
 
 
 
-// const createAllItems = () => {
+const createAllItems = () => {
+  let todoItem = todoList.querySelectorAll('.todo__item');
+  for (let elem of todoItem) {
+    if (!(allItems.includes(elem, 0))) {
+      allItems.push(elem);
+    }
+  }
+}
+
+// const createArraysOfItems = () => {
 //   let todoItem = todoList.querySelectorAll('.todo__item');
 //   for (let elem of todoItem) {
 //     if (!(allItems.includes(elem, 0))) {
-//       allItems.push(elem);
+//             allItems.push(elem);
+//     }
+//     if (elem.classList.contains('todo__item--completed')) {
+//       if (!(completedItems.includes(elem, 0))) {
+//         completedItems.push(elem);
+//       }
+//     } else {
+//       if (!(activeItems.includes(elem, 0))) {
+//         activeItems.push(elem);
+//       }
 //     }
 //   }
 // }
 
-const createArraysOfItems = () => {
-  let todoItem = todoList.querySelectorAll('.todo__item');
-  for (let elem of todoItem) {
-    if (!(allItems.includes(elem, 0))) {
-            allItems.push(elem);
-    }
-    if (elem.classList.contains('todo__item--completed')) {
-      if (!(completedItems.includes(elem, 0))) {
-        completedItems.push(elem);
-      }
-    } else {
-      if (!(activeItems.includes(elem, 0))) {
-        activeItems.push(elem);
-      }
-    }
+const showFooter = () => {
+  if (footer.classList.contains('hidden')) {
+    footer.classList.remove('hidden');
+  }
+}
+
+const hideFooter = () => {
+  if (todoList.children.length === 0) {
+    footer.classList.add('hidden');
   }
 }
 
@@ -70,8 +86,10 @@ mainInput.addEventListener('keydown', (evt) => {
   if (evt.keyCode === keyEnter && mainInput.value) {
     createTodoItem();
     count(1);
-    createArraysOfItems();
-    // createAllItems();
+    // createArraysOfItems();
+    showFooter();
+    createAllItems();
+    
     console.log(activeItems);
     console.log(allItems);
   }
@@ -81,8 +99,9 @@ mainInput.addEventListener('blur', (evt) => {
   if (mainInput.value) {
     createTodoItem();
     count(1);
-    createArraysOfItems();
-    // createAllItems()
+    // createArraysOfItems();
+    showFooter();
+    createAllItems()
   } 
 });
 
@@ -92,15 +111,15 @@ const deleteTodoItem = (evt) => {
   let target = evt.target; 
   if (target.classList.contains("todo__item-delete")) { 
     target.parentNode.remove();
-    count(-1);
+    if ((!target.parentNode.classList.contains('todo__item--completed'))) {
+      count(-1);
+    }
   }
 }
 
 todoList.addEventListener('click', (evt) => {
   deleteTodoItem(evt);
-  // if (todoList.children.length < 1) {
-  //   document.querySelector('.todo__footer').style.display = "none";
-  // }
+  hideFooter();
 });
 
 // Редактирование при двойном клике
@@ -126,30 +145,94 @@ const choiceItem = (evt) => {
   if (item.classList.contains('todo__item--completed')) {
     item.classList.remove('todo__item--completed');
     count(1);
+    if (filterCompleted.checked) {
+      item.classList.add('hidden');
+    }
     
-    // if (filters[2].classList.contains('todo__filter-button--marked')) {
-      
-    // }
   } else {
     item.classList.add('todo__item--completed');
     count(-1);
+    if (filterActive.checked) {
+      item.classList.add('hidden');
+    }
   }
+}
+
+const changeVisibilityBtnClearCompleted = () => {
+
+  btnClearCompleted.style.opacity = 1;
+      
+  const checkCompletedItems = (elem)=> {
+    let items = todoList.children;
+    items = Array.from(items);
+    let rn = items.every((item) => {
+      return !(item.classList.contains("todo__item--completed"));  
+    });
+    return rn;
+  }
+
+  if (checkCompletedItems()) {
+    btnClearCompleted.style.opacity = 0;
+  }
+  
 }
 
 todoList.addEventListener('click', (evt) => {
   let target = evt.target; 
   if (target.classList.contains("todo__item-choice")) { 
-    choiceItem(evt)
-    createArraysOfItems();
+    choiceItem(evt);
+    changeVisibilityBtnClearCompleted();
   }
-  console.log(completedItems);
+
 });
 
+// Показываем активные задания при нажатии на "активные" и "завершенные" при нажатии на завершенные
+
+const showAll = () => {
+  let todoItem = todoList.querySelectorAll('.todo__item');
+  for (let elem of todoItem) {
+      elem.classList.remove('hidden');
+  }
+}
+
+filterAll.addEventListener('click', showAll);
+  
+const showActive = () => {
+  let todoItem = todoList.querySelectorAll('.todo__item');
+  for (let elem of todoItem) {
+    if (elem.classList.contains('todo__item--completed')) {
+      elem.classList.add('hidden');
+    } else {
+      elem.classList.remove('hidden');
+    }
+  }  
+}
+
+filterActive.addEventListener('click', showActive);
+
+const showCompleted = () => {
+  let todoItem = todoList.querySelectorAll('.todo__item');
+  for (let elem of todoItem) {
+    if (elem.classList.contains('todo__item--completed')) {
+      elem.classList.remove('hidden');
+    } else {
+      elem.classList.add('hidden');
+    }
+  }  
+}
+
+filterCompleted.addEventListener('click', showCompleted);
+
+// Удаляем завершенные после нажатия на "удалить завершенные"
+
+const btnClearCompleted = footer.querySelector('.todo__clear-completed');
+
+// const clearCompletedItems = () => {
+
+// }
 
 
-
-
-
+// btnClearCompleted.addEventListener('click' , )
 
     
   

@@ -33,13 +33,24 @@
         </li> -->
       </ul>
     </main>
-    <footer class="todo__footer">
+    <footer class="todo__footer hidden">
       <span class="todo__counter">Осталось заданий:<b>0</b></span>
+      <!-- <ul class="todo__filtres">
+        <li class="todo__filter"><button class="todo__filter-button filter-all">Все</button></li>
+        <li class="todo__filter"><button class="todo__filter-button filter-active">Активные</button></li>
+        <li class="todo__filter"><button class="todo__filter-button filter-completed">Завершенные</button></li>
+      </ul>   -->
       <ul class="todo__filtres">
-        <li class="todo__filter"><button class="todo__filter-button">Все</button></li>
-        <li class="todo__filter"><button class="todo__filter-button">Активные</button></li>
-        <li class="todo__filter"><button class="todo__filter-button">Завершенные</button></li>
-      </ul>  
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-all" class="todo__filter-button filter-all" checked>
+          <label for="filter-all">Все</label>
+        </li>
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-active" class="todo__filter-button filter-active">
+          <label for="filter-active">Активные</label>
+        </li>
+        <li class="todo__filter"><input type="radio" name="filter" id="filter-completed" class="todo__filter-button filter-completed">
+          <label for="filter-completed">Завершенные</label>
+        </li>
+      </ul> 
       <button class="todo__clear-completed">Удалить завершенные</button>
     </footer>
   </div>
