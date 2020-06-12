@@ -108,9 +108,9 @@ audio:not([controls]) {
  * Known issue: no IE 6 support.
  */
 
-[hidden] {
+/* [hidden] {
     display: none;
-}
+} */
 
 /**
  * 1. Correct text resizing oddly in IE 6/7 when body `font-size` is set using

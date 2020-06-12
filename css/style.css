@@ -107,23 +107,27 @@ input[type=text] {
 .todo__item--hidden {
   display: none; }
 
-.todo__item--editing .todo__item-task {
-  width: -webkit-calc(100% - 46px);
-  width: calc(100% - 46px);
-  margin-left: 45px;
-  padding-left: 15px;
-  -webkit-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
-          box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5); }
-
-.todo__item--editing .todo__item-choice + label {
-  opacity: 0; }
-
 .todo__item--completed .todo__item-task {
   text-decoration: line-through;
   opacity: 0.2;
   -webkit-transition: ease-in-out 0.3s;
   -o-transition: ease-in-out 0.3s;
   transition: ease-in-out 0.3s; }
+
+.todo__item--editing .todo__item-task {
+  width: -webkit-calc(100% - 46px);
+  width: calc(100% - 46px);
+  margin-left: 45px;
+  padding-left: 15px;
+  -webkit-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  text-decoration: none; }
+
+.todo__item--editing .todo__item-choice,
+.todo__item--editing .todo__item-choice + label,
+.todo__item--editing .todo__item-delete {
+  visibility: hidden; }
 
 .todo__item-choice {
   position: absolute;
@@ -243,7 +247,7 @@ input[type=text] {
   border: 1px solid rgba(255, 165, 0, 0.5); }
 
 .todo__clear-completed {
-  opacity: 0; }
+  visibility: hidden; }
   @media (hover), (min-width: 0\0), (min--moz-device-pixel-ratio: 0) {
     .todo__clear-completed:hover {
       text-decoration: underline; } }
