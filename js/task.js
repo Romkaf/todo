@@ -18,17 +18,25 @@ const createTodoItem = () => {
   todoElement.querySelector('.todo__item-task').value = mainInput.value;
   mainInput.value = "";
   todoList.appendChild(todoElement);
+  // console.dir(todoElement);
 }
 
-let counter = 0
+let counter;
 let allItems = [];
-let completedItems = [];
-let activeItems = [];
 const keyEnter = 13;
+
+const checkCounter = () => {
+  if (localStorage.getItem('counter')) {
+     counter = Number(localStorage.getItem('counter'));
+  } else {
+    counter = 0;
+  }
+}
+
+checkCounter();
 
 const count = (number) => {
   counter = counter + number;
-  // counter = allItems.length
   todoCounter.textContent = counter;
 };
 
@@ -43,11 +51,13 @@ const count = (number) => {
 //   }
 // }
 
+
 const createAllItems = () => {
   // let todoItem = todoList.querySelectorAll('.todo__item');
   for (let elem of todoItems) {
     if (!(allItems.includes(elem, 0))) {
       allItems.push(elem);
+      // console.log(allItems);
     }
   }
 }
@@ -88,6 +98,7 @@ const mainInputHandler = (evt) => {
     count(1);
     showFooter();
     createAllItems();
+    onLocalStorage();
   }
 };
 
@@ -100,8 +111,6 @@ mainInput.addEventListener('blur', mainInputHandler);
 const deleteTodoItem = (evt) => {
   let target = evt.target; 
   if (target.classList.contains("todo__item-delete")) { 
-    console.log(target.parentNode);
-
     target.parentNode.remove();
     if (!target.parentNode.classList.contains('todo__item--completed')) {
       count(-1);
@@ -111,6 +120,7 @@ const deleteTodoItem = (evt) => {
 
 todoList.addEventListener('click', (evt) => {
   deleteTodoItem(evt);
+  // onLocalStorage();
   hideFooter();
 });
 
@@ -181,6 +191,7 @@ todoList.addEventListener('click', (evt) => {
   if (target.classList.contains("todo__item-choice")) { 
     choiceItem(evt);
     changeVisibilityBtnClearCompleted();
+    // onLocalStorage();
   }
 });
 
@@ -237,6 +248,66 @@ btnClearCompleted.addEventListener('click' , () => {
   hideFooter();
 });
 
-    
-  
+// LocalStorage
+
+document.querySelector('.todo__heading').addEventListener('click', () => {
+  const counter = footer.querySelector('.todo__counter b');
+  localStorage.removeItem('todos', todoList.innerHTML);
+  localStorage.removeItem('values', todoItems);
+  localStorage.removeItem('counter', counter.innerHTML);
+})
+
+const onLocalStorage = () => {
+  // const counter = footer.querySelector('.todo__counter b');
+  // localStorage.setItem('todos', todoList.innerHTML);
+  // localStorage.setItem('todos', todoItems);
+  // const tasks = todoList.querySelectorAll('.todo__item-task');
+  // localStorage.setItem('values', tasks);
+  let hp = JSON.stringify(allItems);
+  console.log(hp);
+  localStorage.setItem('todos', hp);
+  // localStorage.setItem('counter', counter.innerHTML);
+  // console.log(localStorage.todos);
+}
+
+const remember = () => {
+  // const itemsLocStor = localStorage.getItem('todos');
+  console.log(itemsLocStor);
+  for (let i = 0; i < itemsLocStor.length-1; ++i) {
+    createTodoItem();
+    console.log(itemsLocStor);
+    // todoItems[i].children[2].value = itemsLocStor[i].children[2].value;
+    // todoItems[i].children[0].checked = itemsLocStor[i].children[0].checked;
+  }  
+}
+
+function loadTodos() {
+  const itemsLocStor = JSON.parse(localStorage.getItem('todos'));
+  // const counterLocStor = localStorage.getItem('counter');
+  if (itemsLocStor) {
+    // footer.querySelector('.todo__counter b').innerHTML = counterLocStor;
+    // showFooter();
+    // console.dir(itemsLocStor); 
+  }
+  console.dir(itemsLocStor); 
+  // const deleteButtons = document.querySelectorAll("span.todo-trash");
+  // for (const button of deleteButtons) {
+  //     listenDeleteTodo(button);
+  // }
+}
+
+loadTodos();
+
+//  function ft() {
+//    let data = [];
+
+//   for (let elem of todoItems) {
+//     let value = elem.children[2].value;
+//     let checkbox = elem.children[0].checked;
+//   }
+//  };   
+let array = [1, 2, 3];
+
+localStorage.setItem('array', JSON.stringify(array));
+console
 
