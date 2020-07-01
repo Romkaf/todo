@@ -44,17 +44,18 @@
   position: absolute;
   top: 18px;
   left: 7px;
+  visibility: hidden;
   text-align: center;
   font-size: 40px;
   width: 25px;
   height: 25px;
-  color: rgba(0, 0, 0, 0.2);
+  // opacity: 0.2;
   transform: rotate(-90deg);
 }
 
-.todo__choice-all:checked + label {
-  color:rgba(0, 0, 0, 0.8);
-}
+// .todo__choice-all:checked + label {
+//   opacity: 0.8;
+// }
 
 .todo__item {
   position: relative;
