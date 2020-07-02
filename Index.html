@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToDo App</title>
+  <title>Приложение ToDo</title>
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -11,23 +11,26 @@
   <div class="todo">
     <header class="todo__header">
       <h1 class="todo__heading">ToDo</h1>
-      <input type="text" placeholder="Что надо сделать?" class="todo__input" minlength="2">
+      <input class="todo__input" type="text" placeholder="Что надо сделать?" minlength="2">
     </header>
     <main class="todo__main">
-      <input id="choice-all" class="todo__choice-all" type="checkbox">
-			<label for="choice-all">&#8249</label>
+      <input class="todo__choice-all" id="choice-all" type="checkbox">
+			<label for="choice-all">&#8249;</label>
       <ul class="todo__list"></ul>
     </main>
     <footer class="todo__footer hidden">
       <span class="todo__counter">Осталось заданий:<b>0</b></span>
       <ul class="todo__filtres">
-        <li class="todo__filter"><input type="radio" name="filter" id="filter-all" class="todo__filter-button filter-all" checked>
+        <li class="todo__filter">
+          <input class="todo__filter-button filter-all" id="filter-all" type="radio" name="filter" checked>
           <label for="filter-all">Все</label>
         </li>
-        <li class="todo__filter"><input type="radio" name="filter" id="filter-active" class="todo__filter-button filter-active">
+        <li class="todo__filter">
+          <input class="todo__filter-button filter-active" id="filter-active" type="radio" name="filter">
           <label for="filter-active">Активные</label>
         </li>
-        <li class="todo__filter"><input type="radio" name="filter" id="filter-completed" class="todo__filter-button filter-completed">
+        <li class="todo__filter">
+          <input class="todo__filter-button filter-completed" id="filter-completed" type="radio" name="filter">
           <label for="filter-completed">Завершенные</label>
         </li>
       </ul> 
@@ -36,13 +39,19 @@
   </div>
   <template>
     <li class="todo__item">
-      <input  class="todo__item-choice" type="checkbox">
-      <label >&#10003</label>
-      <input type="text" class="todo__item-task" value="" disabled>
-      <button class="todo__item-delete">	
-        &#10060;</button>
+      <input class="todo__item-choice" type="checkbox">
+      <label>&#10003;</label>
+      <input class="todo__item-task" type="text" value="" disabled>
+      <button class="todo__item-delete">&#10060;</button>
     </li>
   </template>
-  <script src="./js/task.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/counter.js"></script>
+  <script src="./js/create-tasks.js"></script>
+  <script src="./js/select-tasks.js"></script>
+  <script src="./js/remove-tasks.js"></script>
+  <script src="./js/edit-tasks.js"></script>
+  <script src="./js/filters.js"></script>
+  <script src="./js/local-storage.js"></script>
 </body>
 </html>
