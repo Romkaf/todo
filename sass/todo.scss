@@ -6,7 +6,16 @@
   background-color: #ffffff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
-  // counter-reset: tasks;
+
+  @media (max-width:650px) {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  @media (max-width:350px) {
+    width: 310px;
+    margin: 100px auto 20px;
+  }
 }
 
 .todo__heading {
@@ -16,7 +25,16 @@
 	font-size: 80px;
 	font-weight: 200;
 	text-align: center;
-	color: rgba(184, 63, 69, 0.2);
+  color: rgba(184, 63, 69, 0.2);
+  
+  @media (max-width:350px) {
+    top: -60px;
+    width: 100%;
+    font-size: 70px;
+    font-weight: 200;
+    text-align: center;
+    color: rgba(184, 63, 69, 0.2);
+  }
 }
 
 .todo__input {
@@ -52,10 +70,6 @@
   // opacity: 0.2;
   transform: rotate(-90deg);
 }
-
-// .todo__choice-all:checked + label {
-//   opacity: 0.8;
-// }
 
 .todo__item {
   position: relative;
@@ -131,6 +145,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 15px;
+  padding-right: 40px;
   padding-left: 60px;
   text-decoration: none;
   opacity: 1;
@@ -169,11 +184,15 @@
   & button {
     color: inherit;
   }
+
+  @media (max-width:650px) {
+    flex-direction: column;
+  }
 }
 
-// .todo__counter::after {
-//   content: counter(tasks);
-// }
+.todo__counter {
+  margin: 10px 0;
+}
 
 .todo__filtres {
   display: flex;
@@ -189,16 +208,6 @@
   width: 1px;
   height: 1px;
   opacity: 0;
-  // box-sizing: border-box;
-  // padding: 3px 5px;
-  // border: 1px solid transparent;
-  // border-radius: 4px;
-  // transition: ease-in-out 0.3s;
-
-  // @include hoverSupport {
-  //   border: 1px solid rgba(255,165,0, 0.3);
-  //   transition: ease-in-out 0.3s;
-  // }
 }
 
 .todo__filter-button + label {
@@ -223,6 +232,7 @@
 
 .todo__clear-completed {
   visibility: hidden;
+  margin: 10px 0;
   
   @include hoverSupport {
     text-decoration: underline;

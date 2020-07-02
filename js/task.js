@@ -2,13 +2,18 @@
 
 const mainInput = document.querySelector('.todo__input');
 const todoList = document.querySelector('.todo__list');
-// const todoItems = todoList.querySelectorAll('.todo__item');
 const todoCounter = document.querySelector('.todo__counter b');
 const filterAll = document.querySelector('.filter-all');
 const filterActive = document.querySelector('.filter-active');
 const filterCompleted = document.querySelector('.filter-completed');
 const footer = document.querySelector('.todo__footer');
 const btnClearCompleted = footer.querySelector('.todo__clear-completed');
+
+let allItems = [];
+let activeItems;
+let completedItems;
+let counter;
+const keyEnter = 13;
 
 // Создаём задания после ввода в mainInput
 
@@ -40,12 +45,6 @@ const renderTodoItems = (array) => {
   }
   todoList.appendChild(fragment);
 };
-
-let allItems = [];
-let activeItems;
-let completedItems;
-let counter;
-const keyEnter = 13;
 
 const checkCounter = () => {
   if (localStorage.getItem('counter')) {
