@@ -6,14 +6,16 @@ const showAll = () => {
 
 filterAll.addEventListener('click', showAll);
   
-const showActive = () => { 
-  renderTodoItems(createActiveItems());
+const showActive = () => {
+  createActiveItems(); 
+  renderTodoItems();
 }
 
 filterActive.addEventListener('click', showActive);
 
 const showCompleted = () => { 
-  renderTodoItems(createCompletedItems());
+  createCompletedItems();
+  renderTodoItems();
 }
 
 filterCompleted.addEventListener('click', showCompleted);

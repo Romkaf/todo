@@ -9,7 +9,7 @@ const loadTodos = () => {
   const tasks = JSON.parse(localStorage.getItem('todos'));
   if (tasks) {
     allItems = tasks;
-    renderTodoItems(tasks);
+    renderTodoItems();
     count();
     visibilityChoiseAllItems();
     checkChoiseAllItems();

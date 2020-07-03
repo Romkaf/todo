@@ -38,9 +38,17 @@ const visibilityFooter = () => {
   }
 }
 
+const validateInput = (evt) => {
+  if (evt.target.value && evt.target.value.match(/\S/)) {
+    correctedValue = evt.target.value.replace(/\s+/g, " ");
+    if (correctedValue[0] ===" ") {correctedValue = correctedValue.replace(/\s/, "")};
+    return correctedValue;
+  }
+};
+
 const mainInputHandler = (evt) => {
-  if ((evt.keyCode === keyEnter || evt.type === 'blur') && mainInput.value) {
-    createAllItems();
+  if ((evt.keyCode === keyEnter || evt.type === 'blur') && validateInput(evt)) {
+    createAllItems(correctedValue);
     createActiveItems();
     createCompletedItems();
     renderTodoItems();

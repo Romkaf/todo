@@ -71,8 +71,8 @@ const checkChoiseAllItems = () => {
 
 choiseAllItems.addEventListener('click', () => {
   selectAllItems();
-  visibilityBtnClearCompleted();
   count();
   checkChoiseAllItems();
+  visibilityBtnClearCompleted();
   onLocalStorage();
 });

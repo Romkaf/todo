@@ -15,12 +15,13 @@ let allItems = [];
 let activeItems;
 let completedItems;
 let counter;
+let correctedValue;
 const keyEnter = 13;
 
-const createAllItems = () => {
+const createAllItems = (valueOfInput) => {
   let itemInfo = {};
   itemInfo.checked = false;
-  itemInfo.value = mainInput.value;
+  itemInfo.value = valueOfInput;
   itemInfo.id = allItems.length ? allItems[allItems.length-1].id + 1 : 1;
   itemInfo.classOfItem ="";
   allItems.push(itemInfo);
