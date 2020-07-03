@@ -12,6 +12,17 @@ const onEditingItemInputs = (evt) => {
   }
 };
 
+const saveChangesOfEditing = (evt, value) => {
+  allItems.forEach((item) => {
+    if (item.id == evt.target.parentNode.id) {
+      item.value = value ? value : item.value;
+      evt.target.value = item.value;
+    }
+  });
+  evt.target.parentNode.classList.remove('todo__item--editing');
+  evt.target.setAttribute('disabled', 'disabled');
+}
+
 const offEditingItemInputs = (evt) => {
   if (evt.keyCode === keyEnter || evt.type === 'blur') { 
     evt.target.removeEventListener('blur', offEditingItemInputs);
@@ -20,16 +31,11 @@ const offEditingItemInputs = (evt) => {
       deleteTodoItem(evt);
     } else {
       validateInput(evt);
-      allItems.forEach((item) => {
-        if (item.id == evt.target.parentNode.id) {
-          item.value = correctedValue;
-          evt.target.value = correctedValue;
-        }
-      });
-      evt.target.parentNode.classList.remove('todo__item--editing');
-      evt.target.setAttribute('disabled', 'disabled');
+      saveChangesOfEditing(evt, correctedValue);
     }
     onLocalStorage();
+  } else if (evt.keyCode === keyEsc ) {
+    saveChangesOfEditing(evt);
   }
 }
 

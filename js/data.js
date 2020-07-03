@@ -17,6 +17,7 @@ let completedItems;
 let counter;
 let correctedValue;
 const keyEnter = 13;
+const keyEsc = 27;
 
 const createAllItems = (valueOfInput) => {
   let itemInfo = {};
