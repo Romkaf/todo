@@ -153,6 +153,12 @@
 
 .todo__item:hover .todo__item-delete {
   opacity: 1;
+  transition: color ease-in-out 0.1s;
+
+  @include hoverSupport {
+    color: $dark-red;
+    transition: color ease-in-out 0.1s;
+  }
 }
 
 .todo__footer {

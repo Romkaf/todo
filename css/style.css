@@ -197,7 +197,16 @@ input[type=text] {
           transform: translateY(-50%); }
 
 .todo__item:hover .todo__item-delete {
-  opacity: 1; }
+  opacity: 1;
+  -webkit-transition: color ease-in-out 0.1s;
+  -o-transition: color ease-in-out 0.1s;
+  transition: color ease-in-out 0.1s; }
+  @media (hover), (min-width: 0\0), (min--moz-device-pixel-ratio: 0) {
+    .todo__item:hover .todo__item-delete:hover {
+      color: rgba(255, 0, 0, 0.8);
+      -webkit-transition: color ease-in-out 0.1s;
+      -o-transition: color ease-in-out 0.1s;
+      transition: color ease-in-out 0.1s; } }
 
 .todo__footer {
   display: -webkit-box;
