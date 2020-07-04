@@ -1,8 +1,10 @@
 'use strict';
 
 const deleteTodoItem = (evt) => { 
-  const deletedTodoIndex = allItems.findIndex(item => item.id == evt.target.parentNode.id);
-  allItems.splice(deletedTodoIndex, 1);
+  if (evt.target.parentNode.classList.contains("todo__item")) {
+    const deletedTodoIndex = allItems.findIndex(item => item.id == evt.target.parentNode.id);
+    allItems.splice(deletedTodoIndex, 1); 
+  }
   createActiveItems();
   createCompletedItems();
   renderTodoItems();

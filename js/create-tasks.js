@@ -3,7 +3,7 @@
 const createTodoItem = (itemInfo) => {
   const Template = document.querySelector('template');
   const todoElement = Template.content.querySelector('.todo__item').cloneNode(true);
-  todoElement.querySelector('.todo__item-task').value = itemInfo.value;
+  todoElement.querySelector('.todo__item-task').textContent = itemInfo.value;
   todoElement.querySelector('.todo__item-choice').checked =  itemInfo.checked;
   const newClass = itemInfo.classOfItem ? itemInfo.classOfItem : "";
   todoElement.classList += ` ${newClass}`;

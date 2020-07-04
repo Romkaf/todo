@@ -1,25 +1,9 @@
-@font-face {
-  font-weight: 400;
-  font-family: "Brutal";
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/Brutal/regular/BrutalRegular.woff') format('woff');
-}
-
-@font-face {
-  font-weight: 700;
-  font-family: "PT Sans Caption";
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/PT_Sans_Caption/PTSansCaption-Bold.ttf');
-}
-
 body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 14px Arial, sans-serif;
+	font-weight: 300;
 	line-height: 1.4em;
 	background: #f5f5f5;
 	color: #111111;
-	font-weight: 300;
 }
 
 button {
@@ -31,8 +15,5 @@ button {
 
 input {
   border: none;
-}
-
-input[type=text] {
-  font-size: 1.6em;
+  font-weight: 300;
 }
