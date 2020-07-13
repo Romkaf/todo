@@ -5,21 +5,22 @@ const createTodoItem = (itemInfo) => {
   const todoElement = Template.content.querySelector('.todo__item').cloneNode(true);
   todoElement.querySelector('.todo__item-task').textContent = itemInfo.value;
   todoElement.querySelector('.todo__item-choice').checked =  itemInfo.checked;
-  const newClass = itemInfo.classOfItem ? itemInfo.classOfItem : "";
+  const newClass = itemInfo.checked ? "todo__item--completed" : "";
   todoElement.classList += ` ${newClass}`;
   todoElement.id = itemInfo.id;
   return todoElement;
 }
   
-const renderTodoItems = (array) => {
+const renderTodoItems = () => {
   todoList.innerHTML = "";
   const fragment = document.createDocumentFragment();
+  let array;
   if (filterAll.checked) {
-    array = allItems;
+    array = itemsArray;
   } else if (filterActive.checked) {
-    array = activeItems;
+    array = activeItemsArray;
   } else if (filterCompleted.checked) {
-    array = completedItems;
+    array = completedItemsArray;
   }
 
   for (let i = 0; i < array.length; i++) {
@@ -29,11 +30,11 @@ const renderTodoItems = (array) => {
   todoList.appendChild(fragment);
 };
 
-const visibilityFooter = () => {
+const setFooterVisibility = () => {
   if (footer.classList.contains('hidden')) {
     footer.classList.remove('hidden');
   }
-  if (allItems.length === 0) {
+  if (itemsArray.length === 0) {
     footer.classList.add('hidden');
   }
 }
@@ -48,15 +49,15 @@ const validateInput = (evt) => {
 
 const mainInputHandler = (evt) => {
   if ((evt.keyCode === keyEnter || evt.type === 'blur') && validateInput(evt)) {
-    createAllItems(correctedValue);
-    createActiveItems();
-    createCompletedItems();
+    addItemToArray(correctedValue);
+    createActiveItemsArray();
+    createCompletedItemsArray();
     renderTodoItems();
-    count();
-    checkChoiseAllItems();
-    visibilityChoiseAllItems();
-    visibilityFooter();
-    onLocalStorage();
+    countActiveItems();
+    setChoiseAllItemsOpacity();
+    setChoiseAllItemsVisibility();
+    setFooterVisibility();
+    setLocalStorage();
   }
 };
 

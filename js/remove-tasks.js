@@ -2,16 +2,16 @@
 
 const deleteTodoItem = (evt) => { 
   if (evt.target.parentNode.classList.contains("todo__item")) {
-    const deletedTodoIndex = allItems.findIndex(item => item.id == evt.target.parentNode.id);
-    allItems.splice(deletedTodoIndex, 1); 
+    const deletedTodoIndex = itemsArray.findIndex(item => item.id == evt.target.parentNode.id);
+    itemsArray.splice(deletedTodoIndex, 1); 
   }
-  createActiveItems();
-  createCompletedItems();
+  createActiveItemsArray();
+  createCompletedItemsArray();
   renderTodoItems();
-  count();
-  visibilityChoiseAllItems();
-  visibilityFooter();
-  onLocalStorage();
+  countActiveItems();
+  setChoiseAllItemsVisibility();
+  setFooterVisibility();
+  setLocalStorage();
 }
 
 todoList.addEventListener('click', (evt) => {
@@ -21,11 +21,7 @@ todoList.addEventListener('click', (evt) => {
 });
 
 const clearCompletedItems = (evt) => {
-  for (let i = allItems.length - 1; i >=0 ; i--) {
-    if (allItems[i].checked) {
-          allItems.splice(i, 1);
-    }
-  }
+  itemsArray = itemsArray.filter((item) => !item.checked);
   
   deleteTodoItem(evt);
   btnClearCompleted.style.visibility = "hidden";

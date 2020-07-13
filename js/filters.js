@@ -1,21 +1,21 @@
 'use strict';
 
-const showAll = () => {
+const showAllItems = () => {
   renderTodoItems();
 }
 
-filterAll.addEventListener('click', showAll);
+filterAll.addEventListener('click', showAllItems);
   
-const showActive = () => {
-  createActiveItems(); 
+const showActiveItems = () => {
+  createActiveItemsArray(); 
   renderTodoItems();
 }
 
-filterActive.addEventListener('click', showActive);
+filterActive.addEventListener('click', showActiveItems);
 
-const showCompleted = () => { 
-  createCompletedItems();
+const showCompletedItems = () => { 
+  createCompletedItemsArray();
   renderTodoItems();
 }
 
-filterCompleted.addEventListener('click', showCompleted);
+filterCompleted.addEventListener('click', showCompletedItems);

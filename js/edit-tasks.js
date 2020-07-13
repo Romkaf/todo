@@ -15,7 +15,7 @@ const onEditingItemInputs = (evt) => {
 
 const saveChangesOfEditing = (evt, value) => {
   if (evt.target) {
-    allItems.forEach((item) => {
+    itemsArray.forEach((item) => {
       if (item.id == evt.target.parentNode.id) {
         item.value = value ? value : item.value;
         evt.target.value = item.value;

@@ -1,21 +1,21 @@
 'use strict';
 
-const onLocalStorage = () => {
-  const tasks = JSON.stringify(allItems);
+const setLocalStorage = () => {
+  const tasks = JSON.stringify(itemsArray);
   localStorage.setItem('todos', tasks);
 }
 
 const loadTodos = () => {
   const tasks = JSON.parse(localStorage.getItem('todos'));
   if (tasks) {
-    allItems = tasks;
+    itemsArray = tasks;
+    createCompletedItemsArray();
     renderTodoItems();
-    count();
-    visibilityChoiseAllItems();
-    checkChoiseAllItems();
-    visibilityFooter();
-    createCompletedItems();
-    visibilityBtnClearCompleted();
+    countActiveItems();
+    setChoiseAllItemsVisibility();
+    setChoiseAllItemsOpacity();
+    setFooterVisibility();
+    setBtnClearCompletedVisibility();
   }
 }
 

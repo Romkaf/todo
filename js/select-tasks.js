@@ -1,78 +1,60 @@
 'use strict';
 
-const selectItem = (evt) => {
+const selectTodoItem = (evt) => {
   let item = evt.target.parentNode;
-  const selectedTodoIndex = allItems.findIndex(element => element.id == item.id);
+  const selectedTodoIndex = itemsArray.findIndex(element => element.id == item.id);
   if (item.classList.contains('todo__item--completed')) {
-    item.classList.remove('todo__item--completed');
-    allItems[selectedTodoIndex].checked = false;
-    allItems[selectedTodoIndex].classOfItem = "";
+    itemsArray[selectedTodoIndex].checked = false;
   } else {
-    item.classList.add('todo__item--completed');
-    allItems[selectedTodoIndex].checked = true;
-    allItems[selectedTodoIndex].classOfItem = "todo__item--completed";
+    itemsArray[selectedTodoIndex].checked = true;
   }
-  renderActiveAndCompleted();
 }
 
-const renderActiveAndCompleted = () => {
-  createActiveItems();
-  createCompletedItems();
-  if (filterActive.checked || filterCompleted.checked) {
-    renderTodoItems();
-  }
-};
-
-const visibilityBtnClearCompleted = () => {
-  btnClearCompleted.style.visibility = (completedItems.length === 0) ? "hidden" : "visible";
+const setBtnClearCompletedVisibility = () => {
+  btnClearCompleted.style.visibility = (completedItemsArray.length === 0) ? "hidden" : "visible";
 }
 
 todoList.addEventListener('click', (evt) => {
   let target = evt.target; 
   if (target.classList.contains("todo__item-choice")) { 
-    selectItem(evt);
-    count();
-    checkChoiseAllItems();
-    visibilityBtnClearCompleted();
-    onLocalStorage();
+    selectTodoItem(evt);
+    createActiveItemsArray();
+    createCompletedItemsArray();
+    renderTodoItems();
+    countActiveItems();
+    setChoiseAllItemsOpacity();
+    setBtnClearCompletedVisibility();
+    setLocalStorage();
   }
 });
 
 const selectAllItems = () => {
-  if (allItems.every((item) => item.checked == true)) {
-    allItems.forEach((item) => {
+  if (itemsArray.every((item) => item.checked == true)) {
+    itemsArray.forEach((item) => {
       item.checked = false;
-      item.classOfItem = "";
     });
-    for (let elem of todoList.children) {
-      elem.classList = ' todo__item';
-      elem.children[0].checked = false;
-    }
   } else {
-    allItems.forEach((item) => {
+    itemsArray.forEach((item) => {
       item.checked = true;
-      item.classOfItem = "todo__item--completed";
     });
-    for (let elem of todoList.children) {
-      elem.classList += ' todo__item--completed';
-      elem.children[0].checked = true;
-    }
   }
-  renderActiveAndCompleted();
 };
 
-const visibilityChoiseAllItems = () => {
-  labelOfChoiseAllItems.style.visibility = (allItems.length === 0) ? "hidden" : "visible";
+const setChoiseAllItemsVisibility = () => {
+  labelOfChoiseAllItems.style.visibility = (itemsArray.length === 0) ? "hidden" : "visible";
 };
 
-const checkChoiseAllItems = () => {
-  labelOfChoiseAllItems.style.opacity = allItems.every((item) =>  item.checked === true) ? 0.8 : 0.2;
+const setChoiseAllItemsOpacity = () => {
+  labelOfChoiseAllItems.style.opacity = itemsArray.every((item) =>  item.checked === true) ? 0.8 : 0.2;
 };
 
-choiseAllItems.addEventListener('click', () => {
+choiceAllItems.addEventListener('click', () => {
   selectAllItems();
-  count();
-  checkChoiseAllItems();
-  visibilityBtnClearCompleted();
-  onLocalStorage();
+  createActiveItemsArray();
+  createCompletedItemsArray();
+  renderTodoItems();
+  countActiveItems();
+  setChoiseAllItemsOpacity();
+  setBtnClearCompletedVisibility();
+  setLocalStorage();
 });
