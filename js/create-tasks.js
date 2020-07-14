@@ -40,24 +40,25 @@ const setFooterVisibility = () => {
 }
 
 const validateInput = (evt) => {
-  if (evt.target.value && evt.target.value.match(/\S/)) {
-    correctedValue = evt.target.value.replace(/\s+/g, " ");
-    if (correctedValue[0] ===" ") {correctedValue = correctedValue.replace(/\s/, "")};
-    return correctedValue;
-  }
+  return correctedValue = (evt.target.value.trim()).replace(/\s+/g, " ");
 };
 
 const mainInputHandler = (evt) => {
-  if ((evt.keyCode === keyEnter || evt.type === 'blur') && validateInput(evt)) {
-    addItemToArray(correctedValue);
-    createActiveItemsArray();
-    createCompletedItemsArray();
-    renderTodoItems();
-    countActiveItems();
-    setChoiseAllItemsOpacity();
-    setChoiseAllItemsVisibility();
-    setFooterVisibility();
-    setLocalStorage();
+  if ((evt.keyCode === keyEnter || evt.type === 'blur') && mainInput.value) {
+
+    if (validateInput(evt)) {
+      addItemToArray(correctedValue);
+      createActiveItemsArray();
+      createCompletedItemsArray();
+      renderTodoItems();
+      countActiveItems();
+      setChoiseAllItemsOpacity();
+      setChoiseAllItemsVisibility();
+      setFooterVisibility();
+      setLocalStorage();
+    } else {
+      mainInput.value = "";
+    }
   }
 };
 
